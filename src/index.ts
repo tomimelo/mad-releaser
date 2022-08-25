@@ -1,9 +1,12 @@
 import shelljs from 'shelljs'
 
-const { echo } = shelljs
+const { echo, which } = shelljs
 
 async function start() {
-  echo('Hello from shell')
+  const gitExists = which('git')
+  if (!gitExists) {
+    echo('You need to install Git to run this script')
+  }
 }
 
 start()
