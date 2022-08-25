@@ -2,7 +2,12 @@ import shelljs from 'shelljs'
 
 const { echo } = shelljs
 
-echo('Hello from shell')
+async function start() {
+  echo('Hello from shell')
+}
+
+start()
+
 
 //Check if git exist
 //Check if existent repository
