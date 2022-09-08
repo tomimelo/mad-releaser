@@ -1,6 +1,6 @@
 import inquirer from 'inquirer'
-import { SimpleGitClient } from './git-client/simple-git/simple-git-client'
-import { ShellJsClient } from './shell-client/shell-js/shell-js-client'
+import { SimpleGitClient } from './git-client/simple-git/simple-git-client.js'
+import { ShellJsClient } from './shell-client/shell-js/shell-js-client.js'
 
 const shell = new ShellJsClient()
 const git = new SimpleGitClient()
