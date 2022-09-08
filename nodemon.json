@@ -1,5 +1,6 @@
 {
   "exec": "ts-node ./src/index.ts",
   "verbose": true,
-  "ext": "ts,js,json"
+  "ext": "ts,js,json",
+  "stdin": false
 }
