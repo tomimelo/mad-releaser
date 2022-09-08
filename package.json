@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "description": "CLI util to release your code",
   "main": "lib/index.js",
+  "type": "module",
   "types": "lib/index.d.ts",
   "scripts": {
     "build": "tsc",
