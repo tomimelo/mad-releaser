@@ -1,7 +1,7 @@
 import { simpleGit, SimpleGit, StatusResult } from 'simple-git'
-import { GitClient } from '../git-client'
+import { Git } from '../git.js'
 
-export class SimpleGitClient implements GitClient {
+export class SimpleGitClient implements Git {
   private readonly git: SimpleGit
 
   public constructor () {

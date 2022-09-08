@@ -1,7 +1,7 @@
-import { ShellClient } from '../shell-client'
 import shelljs from 'shelljs'
+import { Shell } from '../shell.js'
 
-export class ShellJsClient implements ShellClient {
+export class ShellJs implements Shell {
   public which (binary: string): string | null {
     return shelljs.which(binary)
   }
