@@ -39,6 +39,16 @@ export class InquirerClient implements Prompt {
     return customVersion ?? version
   }
 
+  public async confirm (question: string): Promise<boolean> {
+    const { answer } = await this.inquirer.prompt([{
+      type: 'confirm',
+      name: 'answer',
+      message: question,
+      default: false
+    }])
+    return answer
+  }
+
   private isSemVer (semver: string): boolean {
     const regex = /^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(?:-((?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\.(?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\+([0-9a-zA-Z-]+(?:\.[0-9a-zA-Z-]+)*))?$/g
     return regex.test(semver)

@@ -12,15 +12,25 @@ export class SimpleGitClient implements Git {
     return await this.git.status()
   }
 
-  public async assertsRepositoryExists (): Promise<unknown> {
+  public async isRepositoryInitialized (): Promise<boolean> {
     try {
-      return await this.status()
+      await this.status()
+      return true
     } catch (error: any) {
       // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
       if (error.message.includes('not a git repository')) {
-        throw new Error('You must be in an existent repository to run this script')
+        return false
       }
       throw error
     }
+  }
+
+  public async getCurrentBranchName (): Promise<string> {
+    const status = await this.status()
+    const currentBranch = status.current
+    if (currentBranch === null) {
+      throw new Error('You are not in a branch currently')
+    }
+    return currentBranch
   }
 }

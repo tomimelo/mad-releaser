@@ -9,8 +9,15 @@ const inquirer = new InquirerClient()
 async function start (): Promise<void> {
   try {
     shell.assertsWhich('git')
-    await git.assertsRepositoryExists()
-    // Check branch name
+    const isRepositoryInitialized = await git.isRepositoryInitialized()
+    if (!isRepositoryInitialized) {
+      throw new Error('You must be in an existent repository to run this script')
+    }
+    const currentBranch = await git.getCurrentBranchName()
+    if (currentBranch === 'main') {
+      const answer = await inquirer.confirm('Do you want to release from main?')
+      if (!answer) return
+    }
     // Checkout master (see main branch in config)
     const version = await inquirer.promptVersion()
     console.log({ version })

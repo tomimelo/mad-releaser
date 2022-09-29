@@ -1,4 +1,5 @@
 export interface Git {
   status: () => Promise<unknown>
-  assertsRepositoryExists: () => Promise<unknown>
+  isRepositoryInitialized: () => Promise<boolean>
+  getCurrentBranchName: () => Promise<string>
 }
