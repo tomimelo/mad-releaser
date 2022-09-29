@@ -33,4 +33,9 @@ export class SimpleGitClient implements Git {
     }
     return currentBranch
   }
+
+  public async hasPendingChanges (): Promise<boolean> {
+    const status = await this.status()
+    return !status.isClean()
+  }
 }

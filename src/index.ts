@@ -13,6 +13,9 @@ async function start (): Promise<void> {
     if (!isRepositoryInitialized) {
       throw new Error('You must be in an existent repository to run this script')
     }
+    if (await git.hasPendingChanges()) {
+      throw new Error('You have pending changes. Commit everything before doing the release')
+    }
     const currentBranch = await git.getCurrentBranchName()
     if (currentBranch === 'main') {
       const answer = await inquirer.confirm('Do you want to release from main?')
